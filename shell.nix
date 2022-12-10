@@ -1,11 +1,11 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs }:
 with pkgs;
 
 mkShell {
     name = "gaia";
     buildInputs = [ 
         git 
-        rustc 
+        rust-bin.nightly."2022-12-10".default 
         rustfmt
         cargo-watch
         cargo 

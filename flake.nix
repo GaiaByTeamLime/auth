@@ -1,14 +1,22 @@
 {
   description = "gaia-auth";
 
-  inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs = {
+    flake-utils.url = "github:numtide/flake-utils";
+    rust-overlay.url = "github:oxalica/rust-overlay";
+  };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, rust-overlay }:
     flake-utils.lib.eachDefaultSystem
       (system:
-        let pkgs = nixpkgs.legacyPackages.${system}; in
-        {
-          devShells.default = import ./shell.nix { inherit pkgs; };
-        }
+        let
+          overlays = [ (import rust-overlay) ];
+          pkgs = import nixpkgs {
+            inherit system overlays;
+          };
+        in
+          {
+            devShells.default = import ./shell.nix { inherit pkgs; };
+          }
       );
 }
