@@ -6,3 +6,4 @@ firebase-credentials.json
 Dockerfile
 docker-compose.yml
 .gitignore
+mnt/

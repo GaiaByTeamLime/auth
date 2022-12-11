@@ -4,17 +4,19 @@ services:
   database:
     image: postgres
     environment:
-    - "POSTGRES_DB=auth"
-    - "POSTGRES_USER=postgres"
-    - "POSTGRES_PASSWORD=admin"
+      - "POSTGRES_DB=auth"
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=admin"
+      - "PGDATA=/var/lib/postgresql/data/pgdata"
     volumes:
-    - "./scripts/postgres-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
+      - "./scripts/postgres-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
+      - "./mnt/pgdata:/var/lib/postgresql/data"
 
   auth:
     build: .
     volumes:
-    - "./firebase-credentials.json:/app/firebase-credentials.json"
+      - "./firebase-credentials.json:/app/firebase-credentials.json"
     environment:
-    - "DATABASE_URL=postgres://postgres:admin@database/auth"
+      - "DATABASE_URL=postgres://postgres:admin@database/auth"
     ports:
-    - "5000:5000"
+      - "5000:5000"

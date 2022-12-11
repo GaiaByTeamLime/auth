@@ -1,3 +1,4 @@
 /target
 firebase-credentials.json
 .env
+mnt/
