@@ -1,0 +1,8 @@
+/target
+firebase-credentials.json
+.env
+.git/
+*.nix
+Dockerfile
+docker-compose.yml
+.gitignore

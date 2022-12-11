@@ -12,6 +12,8 @@ dotenv = "0.15"
 chrono = "0.4"
 rand = { version = "0.8.5", features = ["std_rng"] }
 base64 = "0.13.1"
+openssl = "*"
+openssl-probe = "*"
 
 [dependencies.sqlx]
 version = "0.5"

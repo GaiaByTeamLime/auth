@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  database:
+    image: postgres
+    environment:
+    - "POSTGRES_DB=auth"
+    - "POSTGRES_USER=postgres"
+    - "POSTGRES_PASSWORD=admin"
+    volumes:
+    - "./scripts/postgres-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
+
+  auth:
+    build: .
+    volumes:
+    - "./firebase-credentials.json:/app/firebase-credentials.json"
+    environment:
+    - "DATABASE_URL=postgres://postgres:admin@database/auth"
+    ports:
+    - "5000:5000"

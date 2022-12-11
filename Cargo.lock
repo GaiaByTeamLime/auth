@@ -125,6 +125,8 @@ dependencies = [
  "base64",
  "chrono",
  "dotenv",
+ "openssl",
+ "openssl-probe",
  "ormx",
  "rand",
  "rocket",

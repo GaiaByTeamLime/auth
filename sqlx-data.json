@@ -1,0 +1,300 @@
+{
+  "db": "PostgreSQL",
+  "74a78121c25cc6b39583ffb6f3643f8ef9ad480c3bbb88dc80d2f9b962987b49": {
+    "query": "SELECT id AS token_id, token, firebase_uid, created, last_used FROM tokens WHERE id = $1",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "token_id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "token",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "firebase_uid",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "last_used",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int4"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "hash": "74a78121c25cc6b39583ffb6f3643f8ef9ad480c3bbb88dc80d2f9b962987b49"
+  },
+  "782361becb1d2330e5bfcc7dc337e56b9ac3263a85e6819255fa775d7b043feb": {
+    "query": "DELETE FROM tokens WHERE id = $1",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Left": [
+          "Int4"
+        ]
+      },
+      "nullable": []
+    },
+    "hash": "782361becb1d2330e5bfcc7dc337e56b9ac3263a85e6819255fa775d7b043feb"
+  },
+  "833a71e126661c78fa1939926655f97a9f78a6c2f2dc3e6772b913398da89464": {
+    "query": "SELECT id AS token_id, token, firebase_uid, created, last_used FROM tokens LIMIT $1 OFFSET $2",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "token_id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "token",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "firebase_uid",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "last_used",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int8",
+          "Int8"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "hash": "833a71e126661c78fa1939926655f97a9f78a6c2f2dc3e6772b913398da89464"
+  },
+  "843d378ff21f616646e7f59bd6c08411de27d5150783f01b5859112cda1bcf00": {
+    "query": "SELECT id AS token_id, token, firebase_uid, created, last_used FROM tokens WHERE firebase_uid = $1",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "token_id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "token",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "firebase_uid",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "last_used",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Bpchar"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "hash": "843d378ff21f616646e7f59bd6c08411de27d5150783f01b5859112cda1bcf00"
+  },
+  "96f00d7de548de935a25f38d8c1a8aa83e126a163027ec2560da5c02eb2da9ef": {
+    "query": "INSERT INTO tokens (id, token, firebase_uid) VALUES ($1, $2, $3) RETURNING created, last_used",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "created",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 1,
+          "name": "last_used",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Bpchar",
+          "Bpchar"
+        ]
+      },
+      "nullable": [
+        false,
+        false
+      ]
+    },
+    "hash": "96f00d7de548de935a25f38d8c1a8aa83e126a163027ec2560da5c02eb2da9ef"
+  },
+  "aa755135b0e201e723ffca60666afeb8f6cda4e676d67300155dbd64186d0935": {
+    "query": "SELECT id AS token_id, token, firebase_uid, created, last_used FROM tokens WHERE token = $1",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "token_id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "token",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "firebase_uid",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "last_used",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Bpchar"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "hash": "aa755135b0e201e723ffca60666afeb8f6cda4e676d67300155dbd64186d0935"
+  },
+  "cd9856e6041e1148fcf37d19ec56106a1ec3997615d61092fef8b00432eab138": {
+    "query": "UPDATE tokens SET token = $1, firebase_uid = $2, created = $3, last_used = $4 WHERE id = $5",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Left": [
+          "Bpchar",
+          "Bpchar",
+          "Timestamp",
+          "Timestamp",
+          "Int4"
+        ]
+      },
+      "nullable": []
+    },
+    "hash": "cd9856e6041e1148fcf37d19ec56106a1ec3997615d61092fef8b00432eab138"
+  },
+  "d25998bcb069f0707b82370b295e12afe78df14ef1c8ba39f7b9ddf42328fc35": {
+    "query": "UPDATE tokens SET last_used = $1 WHERE id = $2",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Left": [
+          "Timestamp",
+          "Int4"
+        ]
+      },
+      "nullable": []
+    },
+    "hash": "d25998bcb069f0707b82370b295e12afe78df14ef1c8ba39f7b9ddf42328fc35"
+  },
+  "faec06d87562798f79377d01a27bec08eebda0492b534d23c63b2d15436b3e6c": {
+    "query": "SELECT id AS token_id, token, firebase_uid, created, last_used FROM tokens",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "token_id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "token",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "firebase_uid",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "last_used",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": []
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "hash": "faec06d87562798f79377d01a27bec08eebda0492b534d23c63b2d15436b3e6c"
+  }
+}

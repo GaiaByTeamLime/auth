@@ -7,7 +7,8 @@ CONTAINER_ID=$(
     -e POSTGRES_DB=gaia \
     -e POSTGRES_USER=postgres \
     -e POSTGRES_PASSWORD=admin \
-    -v "$PROJECT_ROOT/scripts/postgres-schema.sql:/docker-entrypoint-initdb.d/schema.sql" \
+    -v "$PROJECT_ROOT/scripts/postgres-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql" \
+    -v "$PROJECT_ROOT/scripts/postgres-seeddata.sql:/docker-entrypoint-initdb.d/02-seed.sql" \
     -d postgres
 )
 
