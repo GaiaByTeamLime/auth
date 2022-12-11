@@ -51,7 +51,6 @@ impl TokenAuth {
         let mut db = self.database.acquire().await?;
 
         let _new = InsertToken {
-            token_id: 0,
             token: token.clone(),
             firebase_uid: uid.clone(),
         }

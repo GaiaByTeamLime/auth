@@ -149,35 +149,6 @@
     },
     "hash": "843d378ff21f616646e7f59bd6c08411de27d5150783f01b5859112cda1bcf00"
   },
-  "96f00d7de548de935a25f38d8c1a8aa83e126a163027ec2560da5c02eb2da9ef": {
-    "query": "INSERT INTO tokens (id, token, firebase_uid) VALUES ($1, $2, $3) RETURNING created, last_used",
-    "describe": {
-      "columns": [
-        {
-          "ordinal": 0,
-          "name": "created",
-          "type_info": "Timestamp"
-        },
-        {
-          "ordinal": 1,
-          "name": "last_used",
-          "type_info": "Timestamp"
-        }
-      ],
-      "parameters": {
-        "Left": [
-          "Int4",
-          "Bpchar",
-          "Bpchar"
-        ]
-      },
-      "nullable": [
-        false,
-        false
-      ]
-    },
-    "hash": "96f00d7de548de935a25f38d8c1a8aa83e126a163027ec2560da5c02eb2da9ef"
-  },
   "aa755135b0e201e723ffca60666afeb8f6cda4e676d67300155dbd64186d0935": {
     "query": "SELECT id AS token_id, token, firebase_uid, created, last_used FROM tokens WHERE token = $1",
     "describe": {
@@ -222,6 +193,40 @@
       ]
     },
     "hash": "aa755135b0e201e723ffca60666afeb8f6cda4e676d67300155dbd64186d0935"
+  },
+  "c1d015f391d529ddec736292a1ee4b3912c334349477b4b281d45fcb925f6145": {
+    "query": "INSERT INTO tokens (token, firebase_uid) VALUES ($1, $2) RETURNING id AS token_id, created, last_used",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "token_id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "created",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 2,
+          "name": "last_used",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Bpchar",
+          "Bpchar"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false
+      ]
+    },
+    "hash": "c1d015f391d529ddec736292a1ee4b3912c334349477b4b281d45fcb925f6145"
   },
   "cd9856e6041e1148fcf37d19ec56106a1ec3997615d61092fef8b00432eab138": {
     "query": "UPDATE tokens SET token = $1, firebase_uid = $2, created = $3, last_used = $4 WHERE id = $5",

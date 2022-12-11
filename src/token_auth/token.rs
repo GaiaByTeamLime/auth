@@ -6,6 +6,7 @@ use chrono::NaiveDateTime;
 pub struct Token {
     #[ormx(column = "id")]
     #[ormx(get_optional(i32))]
+    #[ormx(default)]
     pub token_id: i32,
 
     #[ormx(get_optional(&str))]
