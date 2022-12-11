@@ -44,7 +44,7 @@ impl TokenAuth {
         }
     }
 
-    pub async fn new_token(&self, uid: String) -> Result<String, Error> {
+    pub async fn new_token(&self, uid: String, mac: String) -> Result<String, Error> {
         // this generates a 36-char long string with a secure random number generator
         let rng = rand::random::<[u8; 27]>(); 
         let token = base64::encode(rng);
@@ -53,6 +53,7 @@ impl TokenAuth {
         let _new = InsertToken {
             token: token.clone(),
             firebase_uid: uid.clone(),
+            sensor_mac: mac.clone(),
         }
         .insert(&mut db)
         .await?;

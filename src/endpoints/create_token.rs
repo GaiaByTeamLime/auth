@@ -13,8 +13,8 @@ pub enum CreateResponse {
     Forbidden(()),
 }
 
-#[get("/create/from_firebase")]
-pub async fn create_from_firebase(state: &State<ServerState>, token: BearerToken) -> CreateResponse {
+#[get("/create/<mac>")]
+pub async fn create_from_firebase(state: &State<ServerState>, token: BearerToken, mac: String) -> CreateResponse {
     match state
         .firebase
         .verify(&token)
@@ -23,7 +23,7 @@ pub async fn create_from_firebase(state: &State<ServerState>, token: BearerToken
     {
         Err(_) => CreateResponse::Forbidden(()),
         Ok(uid) => {
-            match state.token.new_token(uid).await {
+            match state.token.new_token(uid, mac).await {
                 Err(e) => CreateResponse::Error(e.to_string()),
                 Ok(t) => CreateResponse::Created(t),
             }
