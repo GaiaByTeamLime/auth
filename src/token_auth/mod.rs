@@ -53,7 +53,7 @@ impl TokenAuth {
         let _new = InsertToken {
             token: token.clone(),
             firebase_uid: uid.clone(),
-            sensor_mac: mac.clone(),
+            sensor_mac: mac.to_uppercase(),
         }
         .insert(&mut db)
         .await?;
