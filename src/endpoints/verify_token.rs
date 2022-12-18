@@ -29,10 +29,10 @@ pub async fn verify_token(state: &State<ServerState>, token: BearerToken) -> Ver
     match state
         .token
         .verify(&token)
-        .map_ok(|decoded_token| decoded_token.sensor_mac)
+        .map_ok(|decoded_token| decoded_token.sensor_uid)
         .await
     {
-        Ok(sensor_mac) => VerifyResponse::Valid(sensor_mac),
+        Ok(sensor_uid) => VerifyResponse::Valid(sensor_uid),
         Err(_) => VerifyResponse::Forbidden(()),
     }
 }

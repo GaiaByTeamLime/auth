@@ -13,7 +13,7 @@ pub struct Token {
     pub token: String,
 
     #[ormx(get_optional(&str))]
-    pub sensor_mac: String,
+    pub sensor_uid: String,
 
     #[ormx(get_optional(&str))]
     pub firebase_uid: String,

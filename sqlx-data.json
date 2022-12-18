@@ -1,42 +1,7 @@
 {
   "db": "PostgreSQL",
-  "0f0b4892d91a819b74443f52ef1e36e065df3f764360d9e0bf310bebab7c29a3": {
-    "query": "INSERT INTO tokens (token, sensor_mac, firebase_uid) VALUES ($1, $2, $3) RETURNING id AS token_id, created, last_used",
-    "describe": {
-      "columns": [
-        {
-          "ordinal": 0,
-          "name": "token_id",
-          "type_info": "Int4"
-        },
-        {
-          "ordinal": 1,
-          "name": "created",
-          "type_info": "Timestamp"
-        },
-        {
-          "ordinal": 2,
-          "name": "last_used",
-          "type_info": "Timestamp"
-        }
-      ],
-      "parameters": {
-        "Left": [
-          "Bpchar",
-          "Bpchar",
-          "Bpchar"
-        ]
-      },
-      "nullable": [
-        false,
-        false,
-        false
-      ]
-    },
-    "hash": "0f0b4892d91a819b74443f52ef1e36e065df3f764360d9e0bf310bebab7c29a3"
-  },
-  "1663cfca1e0d8863d247a7797d1641a72e8d777489f3ccb967142bf8e77e150b": {
-    "query": "SELECT id AS token_id, token, sensor_mac, firebase_uid, created, last_used FROM tokens",
+  "3ff9942bcaa6de8cedf9651f5bf1ecf1dd514e16582f35d10fbdddbf74937bae": {
+    "query": "SELECT id AS token_id, token, sensor_uid, firebase_uid, created, last_used FROM tokens LIMIT $1 OFFSET $2",
     "describe": {
       "columns": [
         {
@@ -51,56 +16,7 @@
         },
         {
           "ordinal": 2,
-          "name": "sensor_mac",
-          "type_info": "Bpchar"
-        },
-        {
-          "ordinal": 3,
-          "name": "firebase_uid",
-          "type_info": "Bpchar"
-        },
-        {
-          "ordinal": 4,
-          "name": "created",
-          "type_info": "Timestamp"
-        },
-        {
-          "ordinal": 5,
-          "name": "last_used",
-          "type_info": "Timestamp"
-        }
-      ],
-      "parameters": {
-        "Left": []
-      },
-      "nullable": [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    },
-    "hash": "1663cfca1e0d8863d247a7797d1641a72e8d777489f3ccb967142bf8e77e150b"
-  },
-  "3591afecd8bea59a24897ec1d3f40641b33f1cf162e38e7d9bc19b73e16c83e2": {
-    "query": "SELECT id AS token_id, token, sensor_mac, firebase_uid, created, last_used FROM tokens LIMIT $1 OFFSET $2",
-    "describe": {
-      "columns": [
-        {
-          "ordinal": 0,
-          "name": "token_id",
-          "type_info": "Int4"
-        },
-        {
-          "ordinal": 1,
-          "name": "token",
-          "type_info": "Bpchar"
-        },
-        {
-          "ordinal": 2,
-          "name": "sensor_mac",
+          "name": "sensor_uid",
           "type_info": "Bpchar"
         },
         {
@@ -134,10 +50,28 @@
         false
       ]
     },
-    "hash": "3591afecd8bea59a24897ec1d3f40641b33f1cf162e38e7d9bc19b73e16c83e2"
+    "hash": "3ff9942bcaa6de8cedf9651f5bf1ecf1dd514e16582f35d10fbdddbf74937bae"
   },
-  "644d16765f69340c3bcb44ff0780469461b3c5a778f5b9fa1c07f288c5c0f282": {
-    "query": "SELECT id AS token_id, token, sensor_mac, firebase_uid, created, last_used FROM tokens WHERE sensor_mac = $1",
+  "420cb350af379e2f284ae93192a16a75a401bfc3798eb8c50c4e0dc8f6380b9a": {
+    "query": "UPDATE tokens SET token = $1, sensor_uid = $2, firebase_uid = $3, created = $4, last_used = $5 WHERE id = $6",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Left": [
+          "Bpchar",
+          "Bpchar",
+          "Bpchar",
+          "Timestamp",
+          "Timestamp",
+          "Int4"
+        ]
+      },
+      "nullable": []
+    },
+    "hash": "420cb350af379e2f284ae93192a16a75a401bfc3798eb8c50c4e0dc8f6380b9a"
+  },
+  "52562c96c5ddc275bb3bd32433c71e89f3858c19d7a81fde5440f69d865b7518": {
+    "query": "SELECT id AS token_id, token, sensor_uid, firebase_uid, created, last_used FROM tokens WHERE sensor_uid = $1",
     "describe": {
       "columns": [
         {
@@ -152,7 +86,7 @@
         },
         {
           "ordinal": 2,
-          "name": "sensor_mac",
+          "name": "sensor_uid",
           "type_info": "Bpchar"
         },
         {
@@ -185,10 +119,10 @@
         false
       ]
     },
-    "hash": "644d16765f69340c3bcb44ff0780469461b3c5a778f5b9fa1c07f288c5c0f282"
+    "hash": "52562c96c5ddc275bb3bd32433c71e89f3858c19d7a81fde5440f69d865b7518"
   },
-  "6648da466f2bea9a6dbf64f63ea82841f1ca0ff184b39ad4da99e9b447405583": {
-    "query": "SELECT id AS token_id, token, sensor_mac, firebase_uid, created, last_used FROM tokens WHERE token = $1",
+  "5a66e07421dfd6de96a1b5a7a20cc9df1954c00570b33b5895afc6d52aa22f7d": {
+    "query": "SELECT id AS token_id, token, sensor_uid, firebase_uid, created, last_used FROM tokens WHERE id = $1",
     "describe": {
       "columns": [
         {
@@ -203,7 +137,58 @@
         },
         {
           "ordinal": 2,
-          "name": "sensor_mac",
+          "name": "sensor_uid",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "firebase_uid",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 4,
+          "name": "created",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 5,
+          "name": "last_used",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int4"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "hash": "5a66e07421dfd6de96a1b5a7a20cc9df1954c00570b33b5895afc6d52aa22f7d"
+  },
+  "6f647e11bdeaec15160fc14813e38489f8b2e900f945391a8c77854ac57c604e": {
+    "query": "SELECT id AS token_id, token, sensor_uid, firebase_uid, created, last_used FROM tokens WHERE firebase_uid = $1",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "token_id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "token",
+          "type_info": "Bpchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "sensor_uid",
           "type_info": "Bpchar"
         },
         {
@@ -236,7 +221,7 @@
         false
       ]
     },
-    "hash": "6648da466f2bea9a6dbf64f63ea82841f1ca0ff184b39ad4da99e9b447405583"
+    "hash": "6f647e11bdeaec15160fc14813e38489f8b2e900f945391a8c77854ac57c604e"
   },
   "782361becb1d2330e5bfcc7dc337e56b9ac3263a85e6819255fa775d7b043feb": {
     "query": "DELETE FROM tokens WHERE id = $1",
@@ -251,8 +236,43 @@
     },
     "hash": "782361becb1d2330e5bfcc7dc337e56b9ac3263a85e6819255fa775d7b043feb"
   },
-  "91b2066e18405098fafedaf84ec01495d3c3a2e1cf0677d7ed2de7541f6608df": {
-    "query": "SELECT id AS token_id, token, sensor_mac, firebase_uid, created, last_used FROM tokens WHERE firebase_uid = $1",
+  "9034cb77b1a8c4a5f04899d02530bc3f441f23a668015fb638b7c982d7b7f73c": {
+    "query": "INSERT INTO tokens (token, sensor_uid, firebase_uid) VALUES ($1, $2, $3) RETURNING id AS token_id, created, last_used",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "token_id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "created",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 2,
+          "name": "last_used",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Bpchar",
+          "Bpchar",
+          "Bpchar"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false
+      ]
+    },
+    "hash": "9034cb77b1a8c4a5f04899d02530bc3f441f23a668015fb638b7c982d7b7f73c"
+  },
+  "abb64dabe158e8c41dbb076f21180c59587222987941db6b83334ac74e880ed0": {
+    "query": "SELECT id AS token_id, token, sensor_uid, firebase_uid, created, last_used FROM tokens",
     "describe": {
       "columns": [
         {
@@ -267,7 +287,7 @@
         },
         {
           "ordinal": 2,
-          "name": "sensor_mac",
+          "name": "sensor_uid",
           "type_info": "Bpchar"
         },
         {
@@ -287,9 +307,7 @@
         }
       ],
       "parameters": {
-        "Left": [
-          "Bpchar"
-        ]
+        "Left": []
       },
       "nullable": [
         false,
@@ -300,7 +318,7 @@
         false
       ]
     },
-    "hash": "91b2066e18405098fafedaf84ec01495d3c3a2e1cf0677d7ed2de7541f6608df"
+    "hash": "abb64dabe158e8c41dbb076f21180c59587222987941db6b83334ac74e880ed0"
   },
   "d25998bcb069f0707b82370b295e12afe78df14ef1c8ba39f7b9ddf42328fc35": {
     "query": "UPDATE tokens SET last_used = $1 WHERE id = $2",
@@ -316,8 +334,8 @@
     },
     "hash": "d25998bcb069f0707b82370b295e12afe78df14ef1c8ba39f7b9ddf42328fc35"
   },
-  "ec7c995e327bb983e7f584c9167ea70f505bef598aba0fc1c3ad9807bce29e93": {
-    "query": "SELECT id AS token_id, token, sensor_mac, firebase_uid, created, last_used FROM tokens WHERE id = $1",
+  "d6417ad49cb221afc7b70831271332c705b16e81b78336ca8c291cb25ae4dfe5": {
+    "query": "SELECT id AS token_id, token, sensor_uid, firebase_uid, created, last_used FROM tokens WHERE token = $1",
     "describe": {
       "columns": [
         {
@@ -332,7 +350,7 @@
         },
         {
           "ordinal": 2,
-          "name": "sensor_mac",
+          "name": "sensor_uid",
           "type_info": "Bpchar"
         },
         {
@@ -353,7 +371,7 @@
       ],
       "parameters": {
         "Left": [
-          "Int4"
+          "Bpchar"
         ]
       },
       "nullable": [
@@ -365,24 +383,6 @@
         false
       ]
     },
-    "hash": "ec7c995e327bb983e7f584c9167ea70f505bef598aba0fc1c3ad9807bce29e93"
-  },
-  "f4c6bbd6eabb45a5f2491d8bef810a4d753a64ab62d08bcd68cbf933e0d7dee7": {
-    "query": "UPDATE tokens SET token = $1, sensor_mac = $2, firebase_uid = $3, created = $4, last_used = $5 WHERE id = $6",
-    "describe": {
-      "columns": [],
-      "parameters": {
-        "Left": [
-          "Bpchar",
-          "Bpchar",
-          "Bpchar",
-          "Timestamp",
-          "Timestamp",
-          "Int4"
-        ]
-      },
-      "nullable": []
-    },
-    "hash": "f4c6bbd6eabb45a5f2491d8bef810a4d753a64ab62d08bcd68cbf933e0d7dee7"
+    "hash": "d6417ad49cb221afc7b70831271332c705b16e81b78336ca8c291cb25ae4dfe5"
   }
 }

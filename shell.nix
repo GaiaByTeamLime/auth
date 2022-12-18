@@ -21,6 +21,7 @@ stdenv.mkDerivation {
         echo -e "    - Start a database with docker by running \x1b[1m./scripts/start_db.sh\x1b[0m"
         echo -e "    - To start the app run \x1b[1mcargo run\x1b[0m"
         echo -e "    - Use \x1b[1mcargo watch\x1b[0m to watch for changes"
+        echo -e "    - Run \x1b[1m./scripts/merge-sqlx-data-json.sh\x1b[0m after changing database schema."
         echo -e ""
     '';
 }
