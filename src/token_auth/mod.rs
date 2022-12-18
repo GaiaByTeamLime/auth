@@ -4,6 +4,11 @@ use ormx::Insert;
 use token::{Token, InsertToken};
 use ring::{rand::{SystemRandom, SecureRandom}, digest};
 
+const URL_SAFE_ENGINE: base64::engine::fast_portable::FastPortable =
+    base64::engine::fast_portable::FastPortable::from(
+        &base64::alphabet::URL_SAFE,
+        base64::engine::fast_portable::NO_PAD);
+
 mod token;
 
 pub struct TokenAuth {
@@ -52,13 +57,13 @@ impl TokenAuth {
         self.rand.fill(&mut buf)
             .expect("Secure random generator was unavailable!");
 
-        base64::encode(buf)
+        base64::encode_engine(buf, &URL_SAFE_ENGINE)
     }
 
     /// returns `data` hashed using SHA256 encoded using base64
     fn hash(&self, data: &[u8]) -> String {
         let hash = digest::digest(&digest::SHA256, data);
-        base64::encode(hash.as_ref())
+        base64::encode_engine(hash.as_ref(), &URL_SAFE_ENGINE)
     }
 
     /// Verify a sensor token
